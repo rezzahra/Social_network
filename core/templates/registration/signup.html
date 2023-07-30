@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Sign Up</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="SIGNUP">
+        <br>
+        <a class="nav-link active"  href= {% url 'password_change' %}>Change Password</a>
+        <br>
+        <a class="nav-link active"  href= {% url 'password_reset' %}>forget password</a>
+    </form>
+{% endblock %}

@@ -37,9 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'posts',
     'home.apps.HomeConfig',
-    'account.apps.AccountConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +125,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'accounts.CustomUserModel'
+
+# PASSWORD_CHANGE_FORM_URL = '/accounts/password_change/'
+LOGIN_REDIRECT_URL = 'home:home'
+
+LOGOUT_REDIRECT_URL = 'home:home'
+
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
