@@ -1,1 +1,29 @@
+{% extends 'base.html' %}
+{% block content %} hi.. home page
+<br>
+{{ user.email }}
 {{ user.first_name }}
+<br>
+{{ user.description }}
+
+<br>
+{{ user.created_date }}
+<br>
+{% if request.user.id == user.id %}
+<a href="{% url 'profile_edit' user.id %}" >update profile</a>
+<br>
+<a href="{% url 'home:create_post' %}" >create post</a>
+{% endif %}
+<br>
+{% if request.user.id != user.id and not is_following%}
+<a href="{% url 'follow_user' user.id %}" > follow </a>
+{% elif request.user.id != user.id and is_following %}
+<a href="{% url 'unfollow_user' user.id %}" > unfollow </a>
+{% endif %}
+
+<br>
+{% for post in posts %}
+<br>
+ <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+{% endfor %}
+{% endblock %}

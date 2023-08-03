@@ -60,7 +60,7 @@ class Profile(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
-        return reverse('profile', kwargs={'pk':self.pk})
+        return reverse('profile', args=(self.id))
 
     def __str__(self):
         return self.user.email
@@ -70,3 +70,13 @@ class Profile(models.Model):
 def save_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+
+
+
+class Follow(models.Model):
+    from_user = models.ForeignKey(CustomUserModel, on_delete=models.CASCADE, related_name='followers')
+    to_user = models.ForeignKey(CustomUserModel, on_delete=models.CASCADE, related_name='following')
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.from_user} following {self.to_user}'

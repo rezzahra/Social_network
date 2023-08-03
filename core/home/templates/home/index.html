@@ -1,2 +1,7 @@
 {% extends 'base.html' %}
-{% block content %} hi.. home page {% endblock %}
+{% block content %} hi.. home page
+{% for post in posts %}
+<br>
+ <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+{% endfor %}
+{% endblock %}

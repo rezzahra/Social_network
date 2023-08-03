@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{% url 'profile' post.user.id %}">{{ post.user }}<br>{{ profile.first_name }}</a>
+<br>
+{{ post.title }}
+<br>
+{{ post.body }}
+{% if request.user.id == post.user.id %}
+<br>
+<a href="{% url 'home:delete_post' post.id %}" class="btn btn-danger">delete </a>
+<br>
+<a href="{% url 'home:update_post' post.id %}" class="btn btn-danger">update </a>
+
+{% endif %}
+{% endblock %}
